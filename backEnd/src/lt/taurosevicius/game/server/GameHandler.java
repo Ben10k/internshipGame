@@ -24,6 +24,13 @@ public class GameHandler extends Thread {
     }
 
     public void run() {
+        try {
+            output.writeBytes("Bla bla bla start the game\n");
+            output.writeBytes("exit\n");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
