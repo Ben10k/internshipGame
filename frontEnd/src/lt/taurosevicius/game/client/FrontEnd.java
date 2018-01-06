@@ -43,7 +43,7 @@ public class FrontEnd {
         }
     }
 
-    // Parse arguments if they are presented
+    // Parse arguments if they are present
     private static void parseArgs(String[] args) {
         if (args.length == 2) {
             host = args[0];

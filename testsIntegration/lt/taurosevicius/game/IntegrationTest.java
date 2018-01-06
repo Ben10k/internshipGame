@@ -34,7 +34,8 @@ public class IntegrationTest {
     @Test
     public void testConsoleExit() throws Exception {
 
-        ConnectionHandler.main(noArgs);
+        ConnectionHandler connectionHandler = new ConnectionHandler();
+        connectionHandler.startServer();
 
         String input = "exit";
         InputStream in = new ByteArrayInputStream(input.getBytes());
