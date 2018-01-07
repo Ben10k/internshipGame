@@ -31,7 +31,6 @@ public class ClientHandler {
             client.playGame();
             terminateConnection();
             status = "Successful exit";
-            System.out.print(status);
         } catch (IOException e) {
             status = "Server not found";
             System.out.print(status);

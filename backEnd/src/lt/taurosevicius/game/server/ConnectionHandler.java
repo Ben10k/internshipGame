@@ -19,7 +19,6 @@ public class ConnectionHandler {
             this.port = port;
     }
 
-    @SuppressWarnings("InfiniteLoopStatement")
     public void startServer() {
         running.set(true);
         initialized.set(true);

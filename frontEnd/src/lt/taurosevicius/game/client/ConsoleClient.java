@@ -38,7 +38,7 @@ public class ConsoleClient implements Client {
                 toServer.writeBytes(fromConsole.readLine() + '\n');
                 result = fromServer.readLine();
 
-                if (result.compareTo("exit") == 0) {
+                if (result.equalsIgnoreCase("exit")) {
                     System.out.println("You have finished the game.");
                     break;
                 }

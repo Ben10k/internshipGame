@@ -10,6 +10,7 @@ public class ServerTest {
     private ConnectionHandler connectionHandler = new ConnectionHandler();
 
 
+    @SuppressWarnings("StatementWithEmptyBody ")
     @Test
     public void testServerStartup() throws Exception {
 
@@ -18,9 +19,9 @@ public class ServerTest {
         server.start();
         while (!connectionHandler.isInitialized()) {
         }
-
         assertTrue(connectionHandler.isRunning());
-
     }
+    // TODO: GameHandler testing
+
 
 }
