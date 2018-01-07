@@ -1,4 +1,3 @@
-
 import lt.taurosevicius.game.client.ClientHandler;
 import lt.taurosevicius.game.server.ConnectionHandler;
 import org.junit.Before;
@@ -16,10 +15,10 @@ public class IntegrationTest {
 
         Thread server = new Thread(() -> {
             ConnectionHandler connectionHandler = new ConnectionHandler();
-            connectionHandler.startServer();            });
+            connectionHandler.startServer();
+        });
         server.start();
     }
-
 
 
     @Test

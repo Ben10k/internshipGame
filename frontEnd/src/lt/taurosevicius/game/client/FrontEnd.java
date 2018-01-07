@@ -1,8 +1,5 @@
 package lt.taurosevicius.game.client;
 
-import java.io.IOException;
-import java.net.Socket;
-
 public class FrontEnd {
     private static String host = "localhost";
     private static int port = 49000;

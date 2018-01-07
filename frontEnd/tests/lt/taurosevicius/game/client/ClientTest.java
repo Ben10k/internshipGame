@@ -2,9 +2,9 @@ package lt.taurosevicius.game.client;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class ClientHandlerTest {
+public class ClientTest {
 
     @Test
     public void testNoServerFound() throws Exception {

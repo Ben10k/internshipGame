@@ -13,8 +13,7 @@ public class BackEnd {
                 connectionHandler = new ConnectionHandler(Integer.parseInt(args[0]));
             else
                 connectionHandler = new ConnectionHandler();
-        }
-        else {
+        } else {
             connectionHandler = new ConnectionHandler();
         }
 
