@@ -27,7 +27,7 @@ public class IntegrationTest {
         String input = "exit";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        ClientHandler clientHandler = new ClientHandler();
+        ClientHandler clientHandler = new ClientHandler("localhost", 49000, "console");
         clientHandler.begin();
         assertEquals(clientHandler.getStatus(), "Successful exit");
 

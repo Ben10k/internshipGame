@@ -1,7 +1,7 @@
 package lt.taurosevicius.game.client;
 
 public interface Client {
-    void init();
+    void initGame();
 
     void playGame();
 

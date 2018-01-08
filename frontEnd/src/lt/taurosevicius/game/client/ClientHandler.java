@@ -17,17 +17,11 @@ public class ClientHandler {
         this.uiType = uiType;
     }
 
-    public ClientHandler() {
-        this.host = "localhost";
-        this.port = 49000;
-        this.uiType = "console";
-    }
-
     public void begin() {
         try {
             setupConnection();
             client = selectClient(uiType);
-            client.init();
+            client.initGame();
             client.playGame();
             terminateConnection();
             status = "Successful exit";
@@ -47,7 +41,8 @@ public class ClientHandler {
         switch (uiType) {
             case "console":
                 return new ConsoleClient(clientSocket);
-            // TODO: create GUI client and add it to the switch
+            case "swing":
+                return new SwingClient(clientSocket);
             default:
                 return new ConsoleClient(clientSocket);
         }

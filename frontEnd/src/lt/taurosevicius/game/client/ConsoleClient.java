@@ -22,7 +22,7 @@ public class ConsoleClient implements Client {
     }
 
     // Read the first command from the server and print it out
-    public void init() {
+    public void initGame() {
         try {
             System.out.println(fromServer.readLine());
         } catch (IOException e) {
