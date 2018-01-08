@@ -12,13 +12,13 @@ public class ConsoleClient implements Client {
     private DataOutputStream toServer;
     private BufferedReader fromServer;
 
-    public ConsoleClient(Socket socket) throws IOException {
+    private Socket clientSocket;
+    private String status = "Initiated";
+
+    public ConsoleClient(){
         // open a new BufferedReader on console input
         fromConsole = new BufferedReader(new InputStreamReader(System.in));
 
-        // open a new DataOutputStream and BufferedReader on the socket
-        toServer = new DataOutputStream(socket.getOutputStream());
-        fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     // Read the first command from the server and print it out
@@ -44,10 +44,35 @@ public class ConsoleClient implements Client {
                 }
                 System.out.println(result);
             } catch (IOException e) {
-                e.printStackTrace();
+                status = "Server has been terminated";
             }
         }
     }
 
+    // Open a Socket connection to the server
+    public void setupConnection(String host, int port){
+        try {
+            clientSocket = new Socket(host, port);
+            // open a new DataOutputStream and BufferedReader on the socket
+            toServer = new DataOutputStream(clientSocket.getOutputStream());
+            fromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            status = "Connection established";
+        } catch (IOException e) {
+            status = "Server not found";
+        }
+    }
 
+    // Close the Socket connection from the server
+    public void terminateConnection() {
+        try {
+            clientSocket.close();
+            status = "Successful exit";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }

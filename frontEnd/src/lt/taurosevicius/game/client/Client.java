@@ -5,4 +5,9 @@ public interface Client {
 
     void playGame();
 
+    void setupConnection(String host, int port);
+
+    void terminateConnection();
+
+    String getStatus();
 }

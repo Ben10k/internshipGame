@@ -29,13 +29,16 @@ public class SwingClient implements Client {
     private JPanel rootPanel;
     private JButton a10Button;
 
+    private Socket clientSocket;
+
+    private String status = "Initiated";
 
     private DataOutputStream toServer;
     private BufferedReader fromServer;
     private AtomicBoolean playing = new AtomicBoolean(false);
 
     @SuppressWarnings("MagicConstant")
-    public SwingClient(Socket socket) throws IOException {
+    public SwingClient() {
         // Create a JFrame and load contents into it
         JFrame frame = new JFrame("Guess a number");
         frame.setContentPane(rootPanel);
@@ -44,11 +47,6 @@ public class SwingClient implements Client {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.pack();
-
-
-        // open a new DataOutputStream and BufferedReader on the socket
-        toServer = new DataOutputStream(socket.getOutputStream());
-        fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         // Override exit procedure
         Runtime.getRuntime().addShutdownHook(new Thread(() -> playing.set(false)));
@@ -102,5 +100,36 @@ public class SwingClient implements Client {
         while (playing.get()) {
         }
         iterate("exit");
+    }
+    public void setupConnection(String host, int port){
+        try {
+            clientSocket = new Socket(host, port);
+            // open a new DataOutputStream and BufferedReader on the socket
+            toServer = new DataOutputStream(clientSocket.getOutputStream());
+            fromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            status = "Connection established";
+        } catch (IOException e) {
+            setNewConnection();
+        }
+    }
+    // Close the Socket connection from the server
+    public void terminateConnection() {
+        try {
+            clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    private void setNewConnection(){
+
+        connectionDetails dialog =  new connectionDetails();
+        setupConnection(dialog.getHost(),dialog.getPort());
+        System.out.println("connectionDetails cd =  new connectionDetails();\n");
+
+
     }
 }
