@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="frontEnd:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/frontEnd_jar</output-path>
+    <root id="archive" name="frontEnd.jar">
+      <element id="module-output" name="frontEnd" />
+    </root>
+  </artifact>
+</component>

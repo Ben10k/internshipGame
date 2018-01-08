@@ -3,7 +3,7 @@ package lt.taurosevicius.game.client;
 public class FrontEnd {
     private static String host = "localhost";
     private static int port = 49000;
-    private static String uiType = "console";
+    private static String uiType = "swing";
 
 
     public static void main(String args[]) {

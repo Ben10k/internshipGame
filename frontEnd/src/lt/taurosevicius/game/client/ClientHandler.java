@@ -23,6 +23,9 @@ public class ClientHandler {
             client.terminateConnection();
             status = "Successful exit";
         }
+        else {
+            System.out.println("Server not found");
+        }
     }
 
     public String getStatus() {

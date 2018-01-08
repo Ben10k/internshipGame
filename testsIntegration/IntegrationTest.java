@@ -36,7 +36,5 @@ public class IntegrationTest {
         assertEquals(clientHandler.getStatus(), "Successful exit");
 
     }
-    // TODO: port testing
-
 
 }

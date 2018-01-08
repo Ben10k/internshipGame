@@ -22,8 +22,6 @@ public class GameHandlerTest {
 
     @Test
     public void getAnswer() throws Exception {
-
-        // TODO: GameHandler testing
         assertEquals("Available commands are 'start' and 'exit'", classUnderTest.getAnswer("help"));
 
         assertEquals("Enter a number between " + classUnderTest.getBoundLow() + " and " +
