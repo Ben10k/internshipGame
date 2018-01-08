@@ -13,6 +13,14 @@ public class GameHandler {
     private boolean playing = false;
     private boolean alive = true;
 
+    public int getBoundLow() {
+        return boundLow;
+    }
+
+    public int getBoundHigh() {
+        return boundHigh;
+    }
+
     public String getStartAGameString() {
         return startAGameString;
     }
@@ -23,7 +31,7 @@ public class GameHandler {
             return enterANumberString;
         } else if (input.equalsIgnoreCase("exit")) {
             alive = false;
-            return "exit\n";
+            return "exit";
         } else if (input.equalsIgnoreCase("help")) {
 
             if (!playing) {

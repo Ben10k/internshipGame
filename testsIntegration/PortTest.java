@@ -7,13 +7,16 @@ import java.io.ByteArrayInputStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class IntegrationTest {
+
+public class PortTest {
+
+    private final int port = 5000;
 
     @Before
     public void startServer() {
 
         Thread server = new Thread(() -> {
-            Server connectionHandler = new Server();
+            Server connectionHandler = new Server(port);
             connectionHandler.startServer();
         });
         server.start();
@@ -31,12 +34,9 @@ public class IntegrationTest {
         ByteArrayInputStream in = new ByteArrayInputStream("exit".getBytes());
         System.setIn(in);
 
-        ClientHandler clientHandler = new ClientHandler("localhost", 49000, "console");
+        ClientHandler clientHandler = new ClientHandler("localhost", port, "console");
         clientHandler.begin();
         assertEquals(clientHandler.getStatus(), "Successful exit");
 
     }
-    // TODO: port testing
-
-
 }

@@ -21,7 +21,5 @@ public class ServerTest {
         }
         assertTrue(this.server.isRunning());
     }
-    // TODO: ConnectionHandler testing
-
 
 }
