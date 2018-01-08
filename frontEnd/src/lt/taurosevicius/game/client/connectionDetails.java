@@ -12,6 +12,7 @@ public class connectionDetails extends JDialog {
     private String host;
     private int port;
 
+    @SuppressWarnings("Convert2Lambda")
     public connectionDetails() {
         setContentPane(contentPane);
         setModal(true);
@@ -53,7 +54,7 @@ public class connectionDetails extends JDialog {
         try {
             host = textField1.getText();
             port = Integer.parseInt(textField2.getText());
-        } catch (NumberFormatException ignored){
+        } catch (NumberFormatException ignored) {
         }
 //        setVisible(false);
         // add your code here
@@ -66,13 +67,13 @@ public class connectionDetails extends JDialog {
     }
 
 
-    public String getHost(){
+    public String getHost() {
         return host;
     }
-    public int getPort(){
+
+    public int getPort() {
         return port;
     }
-
 
 
 }

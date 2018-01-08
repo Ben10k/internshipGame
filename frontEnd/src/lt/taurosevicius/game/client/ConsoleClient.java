@@ -15,7 +15,7 @@ public class ConsoleClient implements Client {
     private Socket clientSocket;
     private String status = "Initiated";
 
-    public ConsoleClient(){
+    public ConsoleClient() {
         // open a new BufferedReader on console input
         fromConsole = new BufferedReader(new InputStreamReader(System.in));
 
@@ -50,7 +50,7 @@ public class ConsoleClient implements Client {
     }
 
     // Open a Socket connection to the server
-    public void setupConnection(String host, int port){
+    public void setupConnection(String host, int port) {
         try {
             clientSocket = new Socket(host, port);
             // open a new DataOutputStream and BufferedReader on the socket

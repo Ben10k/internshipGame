@@ -1,68 +1,28 @@
 package lt.taurosevicius.game.server;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.Socket;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GameHandler extends Thread {
+public class GameHandler {
     private final int boundLow = 0;
     private final int boundHigh = 10;
     private final String enterANumberString = "Enter a number between " + boundLow + " and " + boundHigh + "";
     private final String startAGameString = "To start a new game enter 'start'";
     private final String availableCommandsString = "Available commands are 'start' and 'exit'";
-    private Socket client = null;
-    private DataOutputStream toClient;
-    private BufferedReader fromClient;
+    private int guesses;
     private int numberToGuess;
     private boolean playing = false;
-    private boolean active = true;
-    private int guesses = 0;
+    private boolean alive = true;
 
-    public GameHandler(Socket client) {
-        this.client = client;
-        try {
-            // open a new DataOutputStream and BufferedReader on the socket
-            toClient = new DataOutputStream(client.getOutputStream());
-            fromClient = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            System.out.println("Reader and writer created.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String getStartAGameString() {
+        return startAGameString;
     }
 
-    public void run() {
-        String input;
-        try {
-            toClient.writeBytes(startAGameString + "\n");
-            String command;
-            while (active) {
-                // read line from client, calculate the answer and send it to back client
-                input = fromClient.readLine();
-                command = getAnswer(input);
-                toClient.writeBytes(command + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            // close the connection to the client
-            try {
-                client.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Output closed.");
-        }
-    }
-
-    private String getAnswer(String input) {
+    public String getAnswer(String input) {
         if (input.equalsIgnoreCase("start")) {
             startNewGame();
             return enterANumberString;
         } else if (input.equalsIgnoreCase("exit")) {
-            active = false;
+            alive = false;
             return "exit\n";
         } else if (input.equalsIgnoreCase("help")) {
 
@@ -98,10 +58,15 @@ public class GameHandler extends Thread {
         }
     }
 
+
     private void startNewGame() {
         numberToGuess = ThreadLocalRandom.current().nextInt(boundLow, boundHigh + 1);
         playing = true;
         guesses = 0;
         System.out.println("New game:\nX is " + numberToGuess);
+    }
+
+    public boolean isAlive() {
+        return alive;
     }
 }

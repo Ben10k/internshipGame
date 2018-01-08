@@ -7,21 +7,21 @@ import static org.junit.Assert.assertTrue;
 
 public class ServerTest {
 
-    private ConnectionHandler connectionHandler = new ConnectionHandler();
+    private Server server = new Server();
 
 
     @SuppressWarnings("StatementWithEmptyBody ")
     @Test
     public void testServerStartup() throws Exception {
 
-        assertFalse(connectionHandler.isRunning());
-        Thread server = new Thread(() -> connectionHandler.startServer());
+        assertFalse(server.isRunning());
+        Thread server = new Thread(() -> this.server.startServer());
         server.start();
-        while (!connectionHandler.isInitialized()) {
+        while (!this.server.isInitialized()) {
         }
-        assertTrue(connectionHandler.isRunning());
+        assertTrue(this.server.isRunning());
     }
-    // TODO: GameHandler testing
+    // TODO: ConnectionHandler testing
 
 
 }

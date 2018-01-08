@@ -101,7 +101,8 @@ public class SwingClient implements Client {
         }
         iterate("exit");
     }
-    public void setupConnection(String host, int port){
+
+    public void setupConnection(String host, int port) {
         try {
             clientSocket = new Socket(host, port);
             // open a new DataOutputStream and BufferedReader on the socket
@@ -112,6 +113,7 @@ public class SwingClient implements Client {
             setNewConnection();
         }
     }
+
     // Close the Socket connection from the server
     public void terminateConnection() {
         try {
@@ -120,14 +122,15 @@ public class SwingClient implements Client {
             e.printStackTrace();
         }
     }
+
     public String getStatus() {
         return status;
     }
 
-    private void setNewConnection(){
+    private void setNewConnection() {
 
-        connectionDetails dialog =  new connectionDetails();
-        setupConnection(dialog.getHost(),dialog.getPort());
+        connectionDetails dialog = new connectionDetails();
+        setupConnection(dialog.getHost(), dialog.getPort());
         System.out.println("connectionDetails cd =  new connectionDetails();\n");
 
 
